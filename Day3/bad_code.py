@@ -3,13 +3,19 @@ import random
 
 random.seed(42)
 options = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-groups = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
-all = [{'rank': group, 'suit': option} for group in groups for option in options]
+suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+
+cards = [f'{'rank':options}, of {'suit':suits}' for options in options for suits in suits]
+
 random.shuffle(all)
 handout = {f'{i+1}': [] for i in range(4)}
+
+
 for _ in range(5):
-    for p in handout:
-        a = all.pop()
-        handout[p].append(a)
-for p, h in handout.items():
-    print(f"{p}'s hand: {h}") 
+    for player in handout:
+        card = all.pop()
+        handout[player].append(card)
+
+
+for player, hand in handout.items():
+    print(f"{player}'s hand: {hand}") 
